@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Créditos de imágenes — ObraDigital</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">O</span>
+        <span data-brand>ObraDigital</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a class="btn btn-primary btn-sm" data-mailto href="mailto:REEMPLAZAR@tudominio.com">Agendar demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Créditos de imágenes</h2>
+        <p>
+          Todas las fotografías se descargaron localmente (sin hotlink) desde
+          <a href="https://unsplash.com" rel="noopener" target="_blank">Unsplash</a>
+          bajo la <a href="https://unsplash.com/license" rel="noopener" target="_blank">Unsplash License</a>
+          (uso comercial gratuito). Atribución apreciada.
+        </p>
+      </div>
+      <ul class="credits-list" id="credits"></ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><a href="index.html">← Volver</a></div>
+      <div><a href="plan.html">Plan de negocio</a></div>
+    </div>
+  </footer>
+
+  <script src="js/brand.js"></script>
+  <script>
+    const folder = (f) => f.startsWith("hero") || f.startsWith("equipo") ? "hero" : "empleados";
+    fetch("credits.json")
+      .then(r => r.json())
+      .then(items => {
+        const ul = document.getElementById("credits");
+        ul.innerHTML = items.map(it => `
+          <li>
+            <img src="images/${folder(it.file)}/${it.file}" alt="Vista previa ${it.file}" width="88" height="88" loading="lazy" />
+            <div>
+              <strong>${it.file}</strong><br/>
+              Foto: <a href="${it.photo_url}" target="_blank" rel="noopener">${it.photographer}</a>
+              · Perfil: <a href="${it.photographer_url}" target="_blank" rel="noopener">${it.photographer_url.replace("https://unsplash.com/","")}</a><br/>
+              Fuente: <a href="${it.photo_url}" target="_blank" rel="noopener">${it.photo_url}</a><br/>
+              Licencia: ${it.license}
+            </div>
+          </li>`).join("");
+      });
+  </script>
+</body>
+</html>

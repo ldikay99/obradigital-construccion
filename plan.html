@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plan de negocio — ObraDigital</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">O</span>
+        <span data-brand>ObraDigital</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#equipo">Equipo</a>
+        <a href="index.html#precios">Precios</a>
+        <a class="btn btn-primary btn-sm" data-mailto href="mailto:REEMPLAZAR@tudominio.com">Agendar demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Plan de negocio</h2>
+        <p>Documento completo: posicionamiento, roster, precios, onboarding, 90 días, riesgos y Ley 1581.</p>
+      </div>
+      <article id="plan" class="plan-content">Cargando plan…</article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><a href="index.html">← Volver a la presentación</a></div>
+      <div><a href="creditos.html">Créditos de imágenes</a></div>
+    </div>
+  </footer>
+
+  <script src="js/brand.js"></script>
+  <script src="js/markdown.js"></script>
+  <script>
+    fetch("plan.md")
+      .then(r => r.text())
+      .then(md => { document.getElementById("plan").innerHTML = window.renderMarkdown(md); })
+      .catch(() => { document.getElementById("plan").textContent = "No se pudo cargar plan.md"; });
+  </script>
+</body>
+</html>
